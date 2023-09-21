@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:09:38 by acouture          #+#    #+#             */
-/*   Updated: 2023/09/21 17:57:59 by acouture         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:21:52 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ Harl::Harl()
     levelMap["INFO"] = &Harl::info;
     levelMap["WARNING"] = &Harl::warning;
     levelMap["ERROR"] = &Harl::error;
+
+    severityMap["DEBUG"] = 1;
+    severityMap["INFO"] = 2;
+    severityMap["WARNING"] = 3;
+    severityMap["ERROR"] = 4;
 }
 
 void Harl::debug(void)

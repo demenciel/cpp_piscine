@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:02:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/09/21 18:03:10 by acouture         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:24:44 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ private:
 public:
     Harl();
     void complain(std::string level);
+    std::map<std::string, int> severityMap;
 };
 
 #endif
