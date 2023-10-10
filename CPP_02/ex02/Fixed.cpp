@@ -173,7 +173,6 @@ Fixed Fixed::operator/(Fixed const &rhs) const
 /*
 ** --------------------------------- OVERLOAD ++/-- ---------------------------------
 */
-// d’unité ε tel que 1 + ε > 1
 Fixed &Fixed::operator++()
 {
 	this->fixedValue += 1;
