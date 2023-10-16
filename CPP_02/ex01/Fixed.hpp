@@ -9,9 +9,9 @@ class Fixed
 {
 public:
 	Fixed();
+	Fixed(int const value);
+	Fixed(float const value);
 	Fixed(const Fixed &src);
-	Fixed(const int value);
-	Fixed(const float value);
 	~Fixed();
 	Fixed &operator=(Fixed const &rhs);
 	int getRawBits(void) const;
@@ -23,5 +23,7 @@ private:
 	int fixedValue;
 	static const int bitsValue = 8;
 };
+
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 
 #endif

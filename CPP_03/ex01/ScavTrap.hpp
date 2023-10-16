@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 13:35:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/10/10 13:44:55 by acouture         ###   ########.fr       */
+/*   Created: 2023/10/16 13:42:21 by acouture          #+#    #+#             */
+/*   Updated: 2023/10/16 15:33:31 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-#define FIXED_HPP
+#ifndef SCAVTRAP_HPP
+#define SCAVTRAP_HPP
 
+#include "ClapTrap.hpp"
 #include <iostream>
 #include <string>
 
-class Fixed
+class ScavTrap : public ClapTrap
 {
 public:
-	Fixed();
-	Fixed(Fixed const &src);
-	~Fixed();
-	Fixed &operator=(Fixed const &rhs);
-	int getRawBits( void ) const;
-	void setRawBits( int const raw );
+    ScavTrap();
+    ScavTrap(std::string name);
+    ScavTrap(ScavTrap const &copy);
+    ~ScavTrap();
+	ScavTrap &operator=(ScavTrap const &rhs);
 
-private:
-	int fixedValue;
-	static const int bitsValue = 8;
+    void attack(std::string const &target);
+    void guardGate();
 };
+int applyDamageClapVSScav(ClapTrap &attacker, ScavTrap &target);
+int applyDamageScavVSClap(ScavTrap &attacker, ClapTrap &target);
 
 #endif

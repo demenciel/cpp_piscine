@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <stdexcept>
 
 // Ajoutez à votre classe des fonctions membres publiques afin de surcharger les opéra-
 // teurs suivants :
