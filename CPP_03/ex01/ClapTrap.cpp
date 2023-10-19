@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:34:54 by acouture          #+#    #+#             */
-/*   Updated: 2023/10/16 15:25:58 by acouture         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:16:42 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 	{
 		this->hit_points = std::max(0, this->hit_points - static_cast<int>(amount));
 		std::cout << this->name << " takes " << amount
-				  << " points of damage! Now has " << this->hit_points << " hit points left." << std::endl;
+				  << " points of damage! It now has " << this->hit_points << " hit points left." << std::endl;
 	}
 	else
 	{

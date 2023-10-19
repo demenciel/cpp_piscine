@@ -6,32 +6,33 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:35:13 by acouture          #+#    #+#             */
-/*   Updated: 2023/10/13 15:51:00 by acouture         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:23:28 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-int main(void)
+void applyDamage(ClapTrap &attacker, ClapTrap &target)
 {
-    ClapTrap clap("Ragnar");
-    ClapTrap clap2("Lagertha");
-
-    clap.attack("Lagertha");
-    clap.takeDamage(5);
-    clap.beRepaired(5);
-    return (0);
+    std::string targetName = target.getName();
+    attacker.attack(targetName);
+    target.takeDamage(attacker.getAttackDamage());
 }
 
-// Quand ClapTrap attaque, sa cible perd <attack damage> hit points. Quand ClapTrap
-// se répare, il regagne <amount> hit points. Les actions attaquer et réparer coûtent chacune
-// 1 point d’énergie. Bien entendu, ClapTrap ne peut exécuter aucune action s’il n’a plus
-// de vie ou d’énergie.
-// Pour toutes ces fonctions membres, vous devez afficher un message descriptif. Par
-// exemple, la fonction attack() affichera quelque chose dans le genre (bien sûr, sans les
-// chevrons) :
-// ClapTrap <name> attacks <target>, causing <damage> points of damage!
-// Les constructeurs et le destructeur afficheront également un message. Ceci afin que
-// vos pairs puissent vérifier facilement qu’ils ont effectivement été appelés.
-// Écrivez et rendez vos propres tests afin de démontrer que votre tout fonctionne comme
-// demandé.
+int main()
+{
+    ClapTrap theClapitain;
+    ClapTrap clap1("Clap1");
+    ClapTrap clap2("Clap2");
+
+    theClapitain = clap1;
+    theClapitain.setName("Ragnar");
+    theClapitain.display();
+    clap1.display();
+    applyDamage(theClapitain, clap2);
+    clap2.beRepaired(10);
+    theClapitain.display();
+    clap2.display();
+
+    return 0;
+}
