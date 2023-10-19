@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:35:13 by acouture          #+#    #+#             */
-/*   Updated: 2023/10/19 16:56:45 by acouture         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:03:32 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ int main()
     // delete j;
 
     // ------ WRONG ANIMAL TEST
-    // const WrongAnimal *meta = new WrongAnimal();
-    // const Animal *j = new Dog();
-    // const WrongAnimal *i = new WrongCat();
-    // std::cout << j->getType() << " " << std::endl;
-    // std::cout << i->getType() << " " << std::endl;
-    // i->makeSound(); // will output the cat sound!
-    // j->makeSound();
-    // meta->makeSound();
-    // delete meta;
-    // delete i;
-    // delete j;
+    const WrongAnimal *meta = new WrongAnimal();
+    const Animal *j = new Dog();
+    const WrongAnimal *i = new WrongCat();
+    std::cout << j->getType() << " " << std::endl;
+    std::cout << i->getType() << " " << std::endl;
+    i->makeSound(); // will output the cat sound!
+    j->makeSound();
+    meta->makeSound();
+    delete meta;
+    delete i;
+    delete j;
 
     // --------- ARRAY POINTERS TEST
     // const Animal* animals[3];
@@ -67,17 +67,17 @@ int main()
     // }
     
     // --------- ASSIGNMENT AND COPY TESTS
-    Animal a1;
-    Animal a2 = a1; // Copy constructor
-    Animal a3;
-    a3 = a1; // Assignment operator
+    // Animal a1;
+    // Animal a2 = a1; // Copy constructor
+    // Animal a3;
+    // a3 = a1; // Assignment operator
 
-    std::cout << a1.getType() << " ";
-    a1.makeSound();
+    // std::cout << a1.getType() << " ";
+    // a1.makeSound();
 
-    std::cout << a2.getType() << " ";
-    a2.makeSound();
+    // std::cout << a2.getType() << " ";
+    // a2.makeSound();
 
-    std::cout << a3.getType() << " ";
-    a3.makeSound();
+    // std::cout << a3.getType() << " ";
+    // a3.makeSound();
 }
