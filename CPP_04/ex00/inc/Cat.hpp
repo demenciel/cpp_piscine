@@ -1,6 +1,6 @@
 #ifndef CAT_HPP
 #define CAT_HPP
-
+#pragma once
 #include "../inc/Animal.hpp"
 #include <iostream>
 
