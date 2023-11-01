@@ -1,11 +1,11 @@
 #include "../inc/PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(std::string const &target) : target(target), AForm("formulaire de pardon présidentiel", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(std::string const &target) : AForm("Formulaire de pardon présidentiel", 25, 5), target(target)
 {
         std::cout << "PresidentialPardonForm constructor is called" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &copy) : target(copy.target), AForm(copy)
+PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &copy) : AForm(copy), target(copy.target)
 {
         std::cout << "PresidentialPardonForm copy constructor is called" << std::endl;
 }

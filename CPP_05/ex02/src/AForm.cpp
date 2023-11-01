@@ -51,6 +51,8 @@ void AForm::beSigned(Bureaucrat &bureaucrat)
       int grade = bureaucrat.getGrade();
       if (grade > this->execGrade || grade > this->signingGrade)
             throw AForm::GradeTooLowException();
+      else 
+            this->isSigned = true;
 }
 
 std::string AForm::getFormName() const

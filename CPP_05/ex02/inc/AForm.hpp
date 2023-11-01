@@ -49,7 +49,7 @@ public:
     int getExecGrade() const;
 
     // member functions
-    void    virtual beSigned(Bureaucrat &bureaucrat) = 0;
+    void    virtual beSigned(Bureaucrat &bureaucrat);
     void    virtual execute(Bureaucrat const &executor) const = 0;
 };
 std::ostream &operator<<(std::ostream& os, const AForm &Aform);
