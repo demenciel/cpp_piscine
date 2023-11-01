@@ -50,8 +50,10 @@ AForm *Intern::makeForm(std::string const &formName, std::string const &target)
 
       for (size_t i = 0; i < sizeof(availableForms) / sizeof(std::string); ++i)
       {
-            if (formName == availableForms[i])
+            if (formName == availableForms[i]) {
+                  std::cout << "Intern creates " << availableForms[i] << std::endl;
                   return creators[i](target);
+            }
       }
       throw Intern::FormNotAvailableException();
 }

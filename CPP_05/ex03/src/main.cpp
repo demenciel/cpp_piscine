@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:37:31 by acouture          #+#    #+#             */
-/*   Updated: 2023/11/01 16:56:12 by acouture         ###   ########.fr       */
+/*   Updated: 2023/11/01 17:03:15 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,9 @@ int main()
     }
 
     std::cout << "\033[1;31m" << std::endl << "---------- Intern Make Form Action Fail ------------" << "\033[0m" << std::endl;
-    Intern someIntern;
-    
     AForm* rf;
     try {
-        rf = someIntern.makeForm("shrubbery form", "Bender");
+        rf = someRandomIntern.makeForm("shrubbery form", "Bender");
     } catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
