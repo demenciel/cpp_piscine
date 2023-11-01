@@ -31,7 +31,7 @@ clean: rm_bin
 fclean: clean rm_bin
 	@echo "\n$(R)fclean target called$(RT)"
 	@rm -f $(NAME)
-	@rm *_shrubbery
+	@rm -f *_shrubbery
 
 re: fclean all
 
