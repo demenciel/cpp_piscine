@@ -8,12 +8,13 @@
 class Bureaucrat
 {
 private:
-    std::string name;
+    std::string const name;
     int grade;
+    Bureaucrat();
 
 public:
     // Coplien
-    Bureaucrat(std::string Name, int Grade);
+    Bureaucrat(std::string const &Name, int Grade);
     Bureaucrat(Bureaucrat const &copy);
     Bureaucrat &operator=(Bureaucrat const &rhs);
     ~Bureaucrat();

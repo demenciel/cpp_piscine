@@ -4,9 +4,8 @@
 using std::cin;
 using std::cout;
 
-Bureaucrat::Bureaucrat(std::string Name, int Grade)
+Bureaucrat::Bureaucrat(std::string const &Name, int Grade) : name(Name)
 {
-      name = Name;
       if (Grade > 150)
             throw Bureaucrat::GradeTooHighException();
       else if (Grade <= 0)
@@ -16,16 +15,14 @@ Bureaucrat::Bureaucrat(std::string Name, int Grade)
       std::cout << "Bureaucrat constructor is called" << std::endl;
 };
 
-Bureaucrat::Bureaucrat(Bureaucrat const &copy)
+Bureaucrat::Bureaucrat(Bureaucrat const &copy) : name(copy.name), grade(copy.grade)
 {
       std::cout << "Bureaucrat copy constructor is called" << std::endl;
-      *this = copy;
 };
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 {
       if (this == &rhs)
             return *this;
-      this->name = rhs.name;
       this->grade = rhs.grade;
       return *this;
 };
