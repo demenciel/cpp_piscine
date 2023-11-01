@@ -6,11 +6,12 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:37:31 by acouture          #+#    #+#             */
-/*   Updated: 2023/11/01 14:27:26 by acouture         ###   ########.fr       */
+/*   Updated: 2023/11/01 16:56:12 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Bureaucrat.hpp"
+#include "../inc/Intern.hpp"
 #include "../inc/AForm.hpp"
 #include "../inc/PresidentialPardonForm.hpp"
 #include "../inc/RobotomyRequestForm.hpp"
@@ -19,58 +20,46 @@
 
 int main()
 {
-    std::cout << "\033[1;31m" << std::endl << "---------- Bureaucrat Construct ------------" << "\033[0m" << std::endl;
-    Bureaucrat Lowman("Lowman", 150);
-    std::cout << Lowman << std::endl << std::endl;
-
+    std::cout << "\033[1;34m" << std::endl << "---------- Bureaucrat Construct ------------" << "\033[0m" << std::endl;
     Bureaucrat Bossman("Bossman", 1);
     std::cout << Bossman << std::endl << std::endl;
     
-    std::cout << "\033[1;31m" << std::endl << "---------- Presidential Form Construct ------------" << "\033[0m" << std::endl;
+    std::cout << "\033[1;34m" << std::endl << "---------- Presidential Form Construct ------------" << "\033[0m" << std::endl;
     PresidentialPardonForm presidential("White House");
     std::cout << presidential << std::endl << std::endl;
 
-
-    std::cout << "\033[1;31m" << std::endl << "------------ Sign and fail ----------" << "\033[0m" << std::endl;
+    std::cout << "\033[1;34m" << std::endl << "---------- Intern Make Robotomy Form Action ------------" << "\033[0m" << std::endl;
+    Intern someRandomIntern;
+    
+    AForm* rrf;
     try {
-        Bossman.signForm(presidential);
-        presidential.execute(Lowman);
+        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+        Bossman.signForm(*rrf);
+        Bossman.executeForm(*rrf);
     } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
 
-    std::cout << "\033[1;31m" << std::endl << "---------- Sign and execute ------------" << "\033[0m" << std::endl;
+    std::cout << "\033[1;34m" << std::endl << "---------- Intern Make Shrubbery Form Action ------------" << "\033[0m" << std::endl;
+    AForm* f;
     try {
-        Bossman.executeForm(presidential);
+        f = someRandomIntern.makeForm("shrubbery creation", "Forest");
+        Bossman.signForm(*f);
+        Bossman.executeForm(*f);
     } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
 
-
-    std::cout << "\033[1;34m" << std::endl << "--------------------------------------------" << "\033[0m" << std::endl;
-    std::cout << "\033[1;31m" << std::endl << "---------- Robotomy Form ------------" << "\033[0m" << std::endl;
-    RobotomyRequestForm robotomy("Bender");
-
-    std::cout << std::endl << "---------- Sign and execute ------------" << std::endl;
+    std::cout << "\033[1;31m" << std::endl << "---------- Intern Make Form Action Fail ------------" << "\033[0m" << std::endl;
+    Intern someIntern;
+    
+    AForm* rf;
     try {
-        Bossman.signForm(robotomy);
-        Bossman.executeForm(robotomy);
+        rf = someIntern.makeForm("shrubbery form", "Bender");
     } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
+    std::cout << "\033[1;31m" << std::endl << "---------------- CLEAN -------------------" << "\033[0m" << std::endl;
 
-    std::cout << "\033[1;34m" << std::endl << "--------------------------------------------" << "\033[0m" << std::endl;
-    std::cout << "\033[1;31m" << std::endl << "---------- Shruberry Form ------------" << "\033[0m" << std::endl;
-    ShrubberyCreationForm shrubbery("Home");
-
-    std::cout << std::endl << "---------- Sign and execute ------------" << std::endl;
-    try {
-        Bossman.signForm(shrubbery);
-        Bossman.executeForm(shrubbery);
-    } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-    }
-
-    std::cout << "\033[1;34m" << std::endl << "---------------- CLEAN -------------------" << "\033[0m" << std::endl;
     return 0;
 }

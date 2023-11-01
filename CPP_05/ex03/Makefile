@@ -4,7 +4,7 @@ G = \033[0;32m
 R = \033[0;31m
 RT = \033[0m
 
-NAME = ex02
+NAME = ex03
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJDIR = bin
@@ -31,7 +31,7 @@ clean: rm_bin
 fclean: clean rm_bin
 	@echo "\n$(R)fclean target called$(RT)"
 	@rm -f $(NAME)
-	@rm *_shrubbery
+	@rm -f *_shrubbery
 
 re: fclean all
 

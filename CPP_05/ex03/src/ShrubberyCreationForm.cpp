@@ -51,4 +51,4 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
                 }
                 ofs.close();
         }
-}
+};
