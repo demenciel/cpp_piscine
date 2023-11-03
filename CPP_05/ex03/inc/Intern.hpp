@@ -12,9 +12,9 @@
 class Intern
 {
 private:
-    Intern();
 
 public:
+    Intern();
     Intern(Intern const *copy);
     Intern &operator=(Intern const &rhs);
     ~Intern();

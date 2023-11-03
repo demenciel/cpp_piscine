@@ -39,9 +39,6 @@ public:
     public:
         const char *what() const throw();
     };
-    // overrider
-    friend std::ostream &operator<<(std::ostream& os, const Bureaucrat &bureaucrat);
-
     // Getter & Setters
     std::string getName() const;
     int getGrade() const;
@@ -54,5 +51,6 @@ public:
     void signForm(AForm &form);
     void executeForm(AForm const &form);
 };
+std::ostream &operator<<(std::ostream& os, const Bureaucrat &bureaucrat);
 
 #endif
