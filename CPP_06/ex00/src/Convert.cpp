@@ -256,7 +256,7 @@ void Convert::convertLiteral(const string &literal)
       try
       {
             float f = convertToFloat(literal);
-            cout << std::fixed << std::setprecision(7) << f << 'f' << std::endl;
+            cout << std::fixed << std::setprecision(1) << f << 'f' << std::endl;
       }
       catch (const ImpossibleException &e)
       {
@@ -267,7 +267,7 @@ void Convert::convertLiteral(const string &literal)
       try
       {
             double d = convertToDouble(literal);
-            cout << std::fixed << std::setprecision(15) << d << std::endl;
+            cout << std::fixed << std::setprecision(1) << d << std::endl;
       }
       catch (const ImpossibleException &e)
       {
