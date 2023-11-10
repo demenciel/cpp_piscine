@@ -33,9 +33,7 @@ bool RPN::isNumber(std::string &token)
         for (size_t i = 0; i < token.length(); i++)
         {
                 if (!isdigit(token[i]))
-                {
                         return false;
-                }
         }
         return true;
 }
@@ -58,9 +56,9 @@ double RPN::makeOperation(double &number1, double &number2, std::string &token)
                 if (number2 == 0)
                 {
                         std::cerr << "Error: Division by zero" << std::endl;
-                        return 1;
+                        return INT16_MIN;
                 }
                 return (number1 / number2);
         }
-        return 1;
+        return INT16_MIN;
 }
