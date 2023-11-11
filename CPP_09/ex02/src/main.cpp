@@ -20,13 +20,8 @@ int main(int ac, char **av)
 
     if (pm.executeVector(pm, input, ac) == -1)
         return -1;
-
-    std::cout << "---------- LIST ---------" << std::endl;
-    std::istringstream iss2(input);
-    pm.createFordList(iss2);
-    std::list<unsigned long> workingList = pm.createWorkingList();
-    // pm.iterativeMergeSortList();
-    pm.printFordList();
+    if (pm.executeList(pm, input, ac) == -1)
+        return -1;
     return 0;
 }
 

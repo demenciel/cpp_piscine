@@ -4,10 +4,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-PMergeMe::PMergeMe()
-{
-        cout << "PMergeMe constructor is called" << endl;
-}
+PMergeMe::PMergeMe() {}
 
 PMergeMe::PMergeMe(PMergeMe const &copy)
 {
@@ -24,10 +21,7 @@ PMergeMe &PMergeMe::operator=(const PMergeMe &rhs)
         return *this;
 }
 
-PMergeMe::~PMergeMe()
-{
-        cout << "PMergeMe destructor is called" << endl;
-}
+PMergeMe::~PMergeMe() {}
 
 const char *PMergeMe::NumberIsNotValidException::what() const throw()
 {

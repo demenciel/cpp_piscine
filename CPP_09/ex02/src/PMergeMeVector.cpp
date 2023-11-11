@@ -9,7 +9,7 @@ int PMergeMe::executeVector(PMergeMe &pm, std::string input, int ac)
         {
                 startVector = clock();
                 pm.createFordVector(iss);
-                pm.iterativeMergeSort();
+                pm.vectorFordJonhson();
                 endVector = clock();
         }
         catch (const PMergeMe::NumberIsNotValidException &e)
@@ -20,7 +20,7 @@ int PMergeMe::executeVector(PMergeMe &pm, std::string input, int ac)
         std::cout << "Before: ";
         std::cout << input << std::endl;
         std::cout << "After: ";
-        pm.printMergedVector();
+        std::cout << pm.mergedVector << std::endl;
         vectorTime = ((double)(endVector - startVector)) / CLOCKS_PER_SEC;
         std::cout << "Time to process a range of " << (ac - 1) << " elements with std::vector : " << vectorTime;
         if (pm.verifySortedSequence())
@@ -96,90 +96,56 @@ void PMergeMe::createFordVector(std::istringstream &iss)
         }
 }
 
-void PMergeMe::sortVectorPairs()
-{
-        for (size_t i = 0; i < fordVector.size(); ++i)
-        {
-                if (fordVector[i].size() == 2 && fordVector[i][0] > fordVector[i][1])
-                {
-                        std::swap(fordVector[i][0], fordVector[i][1]);
-                }
+void PMergeMe::insertInOrderVector(std::vector<unsigned long> &vector, unsigned long num) {
+    std::vector<unsigned long>::iterator it;
+    for (it = vector.begin(); it != vector.end(); ++it) {
+        if (*it > num) {
+            vector.insert(it, num);
+            return;
         }
+    }
+    vector.push_back(num);
 }
 
-std::vector<unsigned long> PMergeMe::merge(const std::vector<unsigned long> &left,
-                                           const std::vector<unsigned long> &right)
+std::vector<unsigned long> PMergeMe::createWorkingVector()
 {
-        std::vector<unsigned long> result;
-        size_t leftIndex = 0, rightIndex = 0;
-
-        while (leftIndex < left.size() && rightIndex < right.size())
+        std::vector<unsigned long> workingVector;
+        std::vector<std::vector<unsigned long> >::iterator it;
+        for (it = fordVector.begin(); it != fordVector.end(); ++it)
         {
-                if (left[leftIndex] < right[rightIndex])
-                {
-                        result.push_back(left[leftIndex]);
-                        leftIndex++;
-                }
-                else
-                {
-                        result.push_back(right[rightIndex]);
-                        rightIndex++;
-                }
+                if (it->size() == 2)
+                        workingVector.push_back((*it)[0]);
+                else if (!it->empty())
+                        workingVector.push_back((*it)[0]);
         }
-        while (leftIndex < left.size())
-        {
-                result.push_back(left[leftIndex]);
-                leftIndex++;
-        }
-        while (rightIndex < right.size())
-        {
-                result.push_back(right[rightIndex]);
-                rightIndex++;
-        }
-        return result;
+        return workingVector;
 }
 
-void PMergeMe::insertElements(std::vector<unsigned long> &sortedSequence, const std::vector<unsigned long> &elementsToInsert)
+void    PMergeMe::vectorFordJonhson()
 {
-        for (size_t i = 0; i < elementsToInsert.size(); ++i)
-        {
-                std::vector<unsigned long>::iterator position = std::lower_bound(sortedSequence.begin(), sortedSequence.end(), elementsToInsert[i]);
-                sortedSequence.insert(position, elementsToInsert[i]);
-        }
-}
+        std::vector<unsigned long> workingVector = createWorkingVector();
+        std::sort(workingVector.begin(), workingVector.end());  // Sort the working vector
+        std::vector<unsigned long> vector;
 
-void PMergeMe::iterativeMergeSort()
-{
-        while (fordVector.size() > 1)
-        {
-                std::vector<std::vector<unsigned long> > tempVector;
-
-                for (size_t i = 0; i < fordVector.size(); i += 2)
-                {
-                        if (i + 1 < fordVector.size())
-                        {
-                                std::vector<unsigned long> merged = merge(fordVector[i], fordVector[i + 1]);
-                                tempVector.push_back(merged);
+        for (std::vector<unsigned long>::iterator itWV = workingVector.begin(); itWV != workingVector.end(); ++itWV) {
+                for (std::vector<std::vector<unsigned long> >::iterator itFV = fordVector.begin(); itFV != fordVector.end(); ++itFV) {
+                        if (!itFV->empty() && (itFV->at(0) == *itWV || (itFV->size() == 2 && itFV->at(1) == *itWV))) {
+                        insertInOrderVector(vector, itFV->at(0));
+                        if (itFV->size() == 2) {
+                                insertInOrderVector(vector, itFV->at(1));
                         }
-                        else
-                                tempVector.push_back(fordVector[i]);
+                        break;
+                        }
                 }
-                if (tempVector.size() > 1 && !tempVector.back().empty())
-                {
-                        std::vector<unsigned long> unmergedElements = tempVector.back();
-                        tempVector.pop_back();
-                        std::vector<unsigned long> &mergedSequence = tempVector.back();
-                        insertElements(mergedSequence, unmergedElements);
-                }
-                fordVector = tempVector;
         }
+        mergedVector = vector;
 }
 
 bool PMergeMe::verifySortedSequence()
 {
-        for (size_t i = 0; i < fordVector.size() - 1; ++i)
+        for (size_t i = 0; i < mergedVector.size() - 1; ++i)
         {
-                if (fordVector[i][0] > fordVector[i + 1][0])
+                if (mergedVector[i] > mergedVector[i + 1])
                         return false;
         }
         return true;
