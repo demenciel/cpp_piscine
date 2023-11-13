@@ -5,10 +5,14 @@ int PMergeMe::executeVector(PMergeMe &pm, std::string input, int ac)
         clock_t startVector, endVector;
         double vectorTime;
         std::istringstream iss(input);
+        int isEmpty = iss.rdbuf()->in_avail();
+        if (isEmpty == 0)
+                return -2;
         try
         {
                 startVector = clock();
                 pm.createFordVector(iss);
+                pm.printFordVectorPairs();
                 pm.vectorFordJonhson();
                 endVector = clock();
         }
@@ -17,10 +21,6 @@ int PMergeMe::executeVector(PMergeMe &pm, std::string input, int ac)
                 std::cerr << e.what() << std::endl;
                 return 1;
         }
-        std::cout << "Before: ";
-        std::cout << input << std::endl;
-        std::cout << "After: ";
-        std::cout << pm.mergedVector << std::endl;
         vectorTime = ((double)(endVector - startVector)) / CLOCKS_PER_SEC;
         std::cout << "Time to process a range of " << (ac - 1) << " elements with std::vector : " << vectorTime;
         if (pm.verifySortedSequence())
@@ -104,7 +104,7 @@ void PMergeMe::insertInOrderVector(std::vector<unsigned long> &vector, unsigned 
             return;
         }
     }
-    vector.push_back(num);
+        vector.push_back(num);
 }
 
 std::vector<unsigned long> PMergeMe::createWorkingVector()
@@ -124,17 +124,17 @@ std::vector<unsigned long> PMergeMe::createWorkingVector()
 void    PMergeMe::vectorFordJonhson()
 {
         std::vector<unsigned long> workingVector = createWorkingVector();
-        std::sort(workingVector.begin(), workingVector.end());  // Sort the working vector
+        std::sort(workingVector.begin(), workingVector.end());
         std::vector<unsigned long> vector;
 
         for (std::vector<unsigned long>::iterator itWV = workingVector.begin(); itWV != workingVector.end(); ++itWV) {
                 for (std::vector<std::vector<unsigned long> >::iterator itFV = fordVector.begin(); itFV != fordVector.end(); ++itFV) {
                         if (!itFV->empty() && (itFV->at(0) == *itWV || (itFV->size() == 2 && itFV->at(1) == *itWV))) {
-                        insertInOrderVector(vector, itFV->at(0));
-                        if (itFV->size() == 2) {
-                                insertInOrderVector(vector, itFV->at(1));
-                        }
-                        break;
+                                insertInOrderVector(vector, itFV->at(0));
+                                if (itFV->size() == 2) {
+                                        insertInOrderVector(vector, itFV->at(1));
+                                }
+                                break;
                         }
                 }
         }
