@@ -40,7 +40,7 @@ int main(int ac, char **av)
     {
       if (stack.size() < 2)
       {
-        std::cerr << "Error: Insufficient operands for " << token << std::endl;
+        std::cerr << "Error: Wrong number of operands." << std::endl;
         return 1;
       }
 
@@ -60,6 +60,11 @@ int main(int ac, char **av)
       std::cerr << "Error: Invalid token '" << token << "'" << std::endl;
       return 1;
     }
+  }
+  if (stack.size() != 1)
+  {
+    std::cerr << "Error: Incorrect RPN expression." << std::endl;
+    return 1;
   }
   std::cout << "Result: " << stack.top() << std::endl;
 }
