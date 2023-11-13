@@ -21,6 +21,10 @@ int PMergeMe::executeVector(PMergeMe &pm, std::string input, int ac)
                 std::cerr << e.what() << std::endl;
                 return 1;
         }
+        std::cout << "Before: ";
+        std::cout << input << std::endl;
+        std::cout << "After: ";
+        std::cout << pm.mergedVector << std::endl;
         vectorTime = ((double)(endVector - startVector)) / CLOCKS_PER_SEC;
         std::cout << "Time to process a range of " << (ac - 1) << " elements with std::vector : " << vectorTime;
         if (pm.verifySortedSequence())
@@ -58,7 +62,7 @@ void PMergeMe::printMergedVector()
 {
         for (std::vector<std::vector<unsigned long> >::iterator it = fordVector.begin(); it != fordVector.end(); ++it)
         {
-                std::cout << *it << std::endl;
+                std::cout << *it << " ";
         }
         std::cout << std::endl;
 };
@@ -92,19 +96,10 @@ void PMergeMe::createFordVector(std::istringstream &iss)
         }
         if (!subVector.empty())
         {
+                /* if (subVector.size() == 1)
+                        subVector.push_back(ULONG_MAX); */
                 this->fordVector.push_back(subVector);
         }
-}
-
-void PMergeMe::insertInOrderVector(std::vector<unsigned long> &vector, unsigned long num) {
-    std::vector<unsigned long>::iterator it;
-    for (it = vector.begin(); it != vector.end(); ++it) {
-        if (*it > num) {
-            vector.insert(it, num);
-            return;
-        }
-    }
-        vector.push_back(num);
 }
 
 std::vector<unsigned long> PMergeMe::createWorkingVector()
@@ -121,6 +116,17 @@ std::vector<unsigned long> PMergeMe::createWorkingVector()
         return workingVector;
 }
 
+void PMergeMe::insertInOrderVector(std::vector<unsigned long> &vector, unsigned long num) {
+        std::vector<unsigned long>::iterator it;
+        for (it = vector.begin(); it != vector.end(); ++it) {
+                if (*it > num) {
+                vector.insert(it, num);
+                return;
+                }
+        }
+        vector.push_back(num);
+}
+
 void    PMergeMe::vectorFordJonhson()
 {
         std::vector<unsigned long> workingVector = createWorkingVector();
@@ -134,6 +140,7 @@ void    PMergeMe::vectorFordJonhson()
                                 if (itFV->size() == 2) {
                                         insertInOrderVector(vector, itFV->at(1));
                                 }
+                                itFV->clear();
                                 break;
                         }
                 }

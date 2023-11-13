@@ -132,10 +132,10 @@ int PMergeMe::executeList(PMergeMe &pm, std::string input, int ac)
         std::cerr << e.what() << std::endl;
         return 1;
     }
-    std::cout << "Before: ";
-    std::cout << input << std::endl;
-    std::cout << "After: ";
-    pm.printFinalList();
+    // std::cout << "Before: ";
+    // std::cout << input << std::endl;
+    // std::cout << "After: ";
+    // pm.printFinalList();
     time = ((double)(end - start)) / CLOCKS_PER_SEC;
     std::cout << "Time to process a range of " << (ac - 1) << " elements with std::list : " << time << std::endl;
     if (pm.verifySortedList())
