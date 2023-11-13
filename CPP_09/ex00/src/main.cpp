@@ -14,6 +14,11 @@ int main(int ac, char **av)
 
   exchange.dbMap = parseInputFile(filename);
   exchange.csvMap = parseCSV(CSV_PATH);
+  if (exchange.csvMap.empty())
+  {
+    std::cout << "Error: Opening CSV Failed" << std::endl;
+    return 1;
+  }
 
   exchange.print_exchange();
 

@@ -2,14 +2,10 @@
 using std::cin;
 using std::cout;
 using std::endl;
-BitcoinExchange::BitcoinExchange()
-{
-        cout << "BitcoinExchange constructor is called" << endl;
-}
+BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const &copy)
 {
-        cout << "BitcoinExchange copy constructor is called" << endl;
         *this = copy;
 }
 
@@ -22,10 +18,7 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rhs)
         return *this;
 }
 
-BitcoinExchange::~BitcoinExchange()
-{
-        cout << "BitcoinExchange destructor is called" << endl;
-}
+BitcoinExchange::~BitcoinExchange() {}
 
 void BitcoinExchange::print_map()
 {

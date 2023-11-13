@@ -9,7 +9,7 @@ std::string parseDate(std::string &line)
     return ("Error: bad input => " + line.substr(0, line.find('|') + 1));
 
   int year = std::stoi(line.substr(0, dashPos));
-  if (year < 2000 || year > 2023)
+  if (year < 2009 || year > 2023)
     return ("Error: bad input => " + line);
 
   std::size_t secondDashPos = line.find('-', dashPos + 1);
@@ -90,10 +90,7 @@ std::map<std::string, double> parseCSV(const std::string &filename)
         std::map<std::string, double> csvRates;
         std::ifstream file(filename);
         if (!file.is_open())
-        {
-                std::cerr << "Could not open the file " << filename << std::endl;
                 return csvRates;
-        }
         std::string line;
         getline(file, line);
 

@@ -9,7 +9,7 @@
 #include <string>
 #include <fstream>
 
-#define CSV_PATH "/Users/acouture/Desktop/cpp_piscine/CPP_09Home/ex00/inc/data.csv"
+#define CSV_PATH "/Users/acouture/Desktop/Cursus/CPP/CPP_09/ex00/inc/data.csv"
 
 class BitcoinExchange
 {
